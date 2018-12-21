@@ -1,0 +1,34 @@
+{
+  "name": "d3-weather-chart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffsnowdon/d3-weather-chart.git"
+  },
+  "author": "Jeff Snowdon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffsnowdon/d3-weather-chart/issues"
+  },
+  "homepage": "https://github.com/jeffsnowdon/d3-weather-chart#readme",
+  "dependencies": {
+    "requirejs": "^2.3.6",
+    "jquery": "^3.3.1",
+    "backbone": "^1.3.3",
+    "d3": "^5.7.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "fancy-log": "^1.3.3",
+    "gulp": "^4.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.1",
+    "node-sass": "^4.11.0"
+  }
+}
