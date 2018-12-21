@@ -1,4 +1,4 @@
-require([ 'app.config' ], function() {
-	require([ 'app.js' ], function() {
+require([ './app.config' ], function() {
+	require([ './js/app.js' ], function() {
 	});
 });
