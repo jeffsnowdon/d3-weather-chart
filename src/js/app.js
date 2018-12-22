@@ -29,6 +29,10 @@ require(["d3"], function (d3) {
             .domain([minValue, maxValue])
             .range([chartHeight, 0]);
 
+        var rgbScale = d3.scaleLinear()
+            .domain([minValue, maxValue])
+            .range([0, 255]);
+
         var chart = d3.select('.chart')
             .attr('width', chartWidth)
             .attr('height', chartHeight);
@@ -43,7 +47,11 @@ require(["d3"], function (d3) {
 
         dot.append("rect")
             .attr("width", 2)
-            .attr("height", 2);
+            .attr("height", 2)
+            .attr('fill', function (d, i) {
+                return "rgb(0" + ','  +rgbScale(d.actual_mean_temp) + ', 255)' ;
+                // return "rgb(0,0,0)";
+            });
     });
 
 });
