@@ -49,9 +49,19 @@ require(["d3"], function (d3) {
             .attr("width", 2)
             .attr("height", 2)
             .attr('fill', function (d, i) {
-                return "rgb(0" + ','  +rgbScale(d.actual_mean_temp) + ', 255)' ;
-                // return "rgb(0,0,0)";
+                return "rgb(0" + ',' + rgbScale(d.actual_mean_temp) + ', 255)';
             });
+
+        setTimeout(function () {
+            var dot = chart.selectAll('g')
+                .transition()
+                .duration(2000)
+                .ease(d3.easeCubic)
+                .attr('transform', function (d, i) {
+                    return "translate(" + (chartWidth - xScale(new Date(Date.parse(d.date)))) + ", " + yScale(d.actual_mean_temp) + ')';
+                })
+
+        }, 3000)
     });
 
 });
