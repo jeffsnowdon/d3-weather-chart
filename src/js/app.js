@@ -1,35 +1,32 @@
-require(["d3"], function (d3) {
-
-    var minValue = -1;
-    var maxValue = -1;
+require(["d3", "lodash"], function (d3, _) {
 
     d3.csv("./assets/KCLT.csv", function (row, b, c, d) {
-        if (minValue == -1 || row.actual_mean_temp < minValue) {
-            minValue = row.actual_mean_temp;
-        }
-        if (maxValue == -1 || row.actual_mean_temp > maxValue) {
-            maxValue = row.actual_mean_temp;
-        }
         return row;
     }).then(function (data) {
 
+        // determine sizing
         var margin = { top: 20, right: 20, bottom: 40, left: 40 };
         var chartWidth = 840 - margin.left - margin.right;
         var chartHeight = 420 - margin.top - margin.bottom;
 
+        // determine scale domains
+        var minMaxValues = determineMinMaxValues(data);
+        var minValue = minMaxValues.minValue;
+        var maxValue = minMaxValues.maxValue;
         var minDate = new Date(Date.parse(data[0].date));
         var maxDate = new Date(Date.parse(data[data.length - 1].date));
-        // define the x (horizontal) scale
+
+        // define the x scale
         var xScale = d3.scaleTime()
             .domain([minDate, maxDate])
             .range([0, chartWidth]);
 
-
-        //define the y (vertical) scale
+        // define the y scale
         var yScale = d3.scaleLinear()
             .domain([minValue, maxValue])
             .range([chartHeight, 0]);
 
+        // define the rgb color scales
         var redScale = d3.scaleLinear()
             .domain([minValue, maxValue])
             .range([24, 200]);
@@ -90,14 +87,7 @@ require(["d3"], function (d3) {
                     .range([0, chartWidth]);
             }
 
-            xAxis = d3.axisBottom(xScale)
-                .tickFormat(d3.timeFormat("%B"));
-           chart.select('.x.axis')
-                .transition()
-                .duration(0)
-                .delay(2000)
-                .call(xAxis);
-
+            var oneTime = true;
             var dot = innerChart.selectAll('g.point')
                 .transition()
                 .duration(2000)
@@ -105,10 +95,36 @@ require(["d3"], function (d3) {
                 .attr('transform', function (d, i) {
                     var x = xScale(new Date(Date.parse(d.date)));
                     return "translate(" + x + ", " + yScale(d.actual_mean_temp) + ')';
-                });
+                })
+                .on('end', function () {
+                    if (oneTime) {
+                        xAxis = d3.axisBottom(xScale)
+                            .tickFormat(d3.timeFormat("%B"));
+                        chart.select('.x.axis')
+                            .transition()
+                            .duration(0)
+                            .call(xAxis);
+                        oneTime = false;
+                    }
+                })
             animToggle = !animToggle;
         })
     });
+
+    function determineMinMaxValues(data) {
+        var minValue = -1;
+        var maxValue = -1;
+        _.each(data, function (row) {
+            if (minValue == -1 || row.actual_mean_temp < minValue)
+                minValue = row.actual_mean_temp;
+            if (maxValue == -1 || row.actual_mean_temp > maxValue)
+                maxValue = row.actual_mean_temp;
+        })
+        return {
+            minValue: minValue,
+            maxValue: maxValue
+        }
+    }
 
 });
 
