@@ -92,7 +92,7 @@ require(["d3"], function (d3) {
 
             xAxis = d3.axisBottom(xScale)
                 .tickFormat(d3.timeFormat("%B"));
-            chart.select('.x.axis')
+           chart.select('.x.axis')
                 .transition()
                 .duration(0)
                 .delay(2000)

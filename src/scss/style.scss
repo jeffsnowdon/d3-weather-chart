@@ -1,18 +1,44 @@
-/* Styles */
+html{
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    box-sizing: border-box;
+}
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    background-color:black;
+}
+
+.container{
+    display: flex;
+    margin: auto;
+}
+
 .chart {
-    border: 1px solid rgb(180, 180, 180);
+    // border: 1px solid rgb(180, 180, 180);
     background-color: black;
 }
 
 /* Axis */
 .axis text {
     font: 10px sans-serif;
-    color: white;
+    color: rgb(124, 124, 124);
 }
   
 .axis path,
 .axis line {
     fill: none;
-    stroke: white;
+    stroke: rgb(124, 124, 124);
     shape-rendering: crispEdges;
 }
