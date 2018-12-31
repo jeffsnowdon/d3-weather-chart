@@ -8,3 +8,5 @@ Click on chart for x axis flip.
 Run the following commands from project root directory.
 * npm install
 * gulp serve
+
+![App Screenshot](/sample.png?raw=true "App Screenshot")
