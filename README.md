@@ -9,4 +9,4 @@ Run the following commands from project root directory.
 * npm install
 * gulp serve
 
-![App Sample](/sample.gif?raw=true "App Sample")
+![App Sample](/sample2.gif?raw=true "App Sample")
