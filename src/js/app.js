@@ -1,3 +1,5 @@
+'use strict';
+
 require(["d3", "lodash"], function (d3, _) {
 
     d3.csv("./assets/KCLT.csv", function (row, b, c, d) {

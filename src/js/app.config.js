@@ -1,4 +1,5 @@
-//Shortcuts to use in the view.
+'use strict';
+
 require.config({
 	paths : {
 		'jquery' : '../../node_modules/jquery/dist/jquery.min',
